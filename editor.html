@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editor — Email Studio V2</title>
+  <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="css/editor.css">
 </head>
 <body>
@@ -117,6 +118,8 @@
   <div id="toast" class="ed-toast hidden"></div>
 
   <!-- Scripts (no MJML dependency) -->
+  <script src="js/auth.js"></script>
+  <script>requireAuth();</script>
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
   <script src="js/icon_data.js"></script>
   <script src="js/store.js"></script>
