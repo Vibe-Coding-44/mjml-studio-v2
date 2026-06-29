@@ -136,9 +136,10 @@ html, body {
   display: flex; flex-direction: column; overflow: hidden;
 }
 .ed-panel-section {
-  padding: 10px; border-bottom: 1px solid var(--border); overflow-y: auto;
+  padding: 10px; border-bottom: 1px solid var(--border);
+  overflow-y: auto; flex-shrink: 0; max-height: 42%;
 }
-.ed-panel-section--grow { flex: 1; border-bottom: none; }
+.ed-panel-section--grow { flex: 1; min-height: 120px; max-height: none; border-bottom: none; }
 .ed-panel-section::-webkit-scrollbar { width: 3px; }
 .ed-panel-section::-webkit-scrollbar-thumb {
   background: rgba(108, 71, 255, 0.2); border-radius: 2px;
