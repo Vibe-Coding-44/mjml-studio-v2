@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Studio V2 — 管理画面</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <header class="db-header">
+    <div class="db-header__brand">📧 Email Studio V2</div>
+    <button id="btn-new" class="db-btn db-btn--primary">+ 新規作成</button>
+  </header>
+
+  <div class="db-main">
+    <div class="db-toolbar">
+      <input id="search-input" type="text" class="db-search" placeholder="テンプレートを検索...">
+      <select id="status-filter" class="db-select">
+        <option value="">すべて</option>
+        <option value="draft">下書き</option>
+        <option value="complete">完了</option>
+      </select>
+      <span id="db-count" class="db-count"></span>
+    </div>
+
+    <div id="card-grid" class="db-grid"></div>
+    <div id="db-empty" class="db-empty hidden">
+      <p class="db-empty__text">テンプレートがありません</p>
+      <button class="db-btn db-btn--primary" id="btn-new2">+ 最初のテンプレートを作成</button>
+    </div>
+  </div>
+
+  <!-- Template Picker Modal -->
+  <div id="picker-overlay" class="picker-overlay hidden">
+    <div class="picker-modal">
+      <div class="picker-header">
+        <span class="picker-title">テンプレートを選択</span>
+        <button id="picker-close" class="picker-close">✕</button>
+      </div>
+      <div id="picker-grid" class="picker-grid"></div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div id="ctx-menu" class="ctx-menu hidden">
+    <button class="ctx-item" data-action="edit">✏️ 編集</button>
+    <button class="ctx-item" data-action="duplicate">📋 複製</button>
+    <button class="ctx-item" data-action="export">⬇️ HTML 書き出し</button>
+    <hr class="ctx-divider">
+    <button class="ctx-item ctx-item--danger" data-action="delete">🗑️ 削除</button>
+  </div>
+
+  <script src="https://unpkg.com/mjml-browser@4/lib/index.js"></script>
+  <script src="js/icon_data.js"></script>
+<script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

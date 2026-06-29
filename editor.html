@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor — Email Studio V2</title>
+  <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+
+  <!-- Top Toolbar -->
+  <header class="ed-toolbar">
+    <a href="index.html" class="ed-toolbar__back">← 管理画面</a>
+    <div class="ed-toolbar__center">
+      <input id="ed-name" type="text" class="ed-toolbar__name" placeholder="テンプレート名..." value="新規テンプレート">
+    </div>
+    <div class="ed-toolbar__right">
+      <button id="btn-undo" class="ed-btn ed-btn--ghost" title="元に戻す (Ctrl+Z)" disabled>↩ Undo</button>
+      <button id="btn-redo" class="ed-btn ed-btn--ghost" title="やり直す (Ctrl+Shift+Z)" disabled>↪ Redo</button>
+      <button id="btn-save" class="ed-btn ed-btn--ghost">保存</button>
+      <div class="ed-dropdown">
+        <button id="btn-export-trigger" class="ed-btn ed-btn--primary">書き出し ▾</button>
+        <div id="export-menu" class="ed-dropdown__menu hidden">
+          <button id="btn-export-dl" class="ed-dropdown__item">HTML ダウンロード</button>
+          <button id="btn-export-copy" class="ed-dropdown__item">HTML をコピー</button>
+          <button id="btn-export-text" class="ed-dropdown__item">テキスト版をコピー</button>
+          <div class="ed-export-note">⚠️ Gmailへの直接ペーストは非推奨。<br>Mailchimp / SendGrid のコードインポートを使用してください。<br>テキスト版はマルチパートメールのプレーンテキストとして使用できます。</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ed-workspace">
+
+    <!-- Left Panel -->
+    <aside class="ed-left">
+      <div class="ed-panel-section">
+        <div class="ed-panel-title">コンポーネント追加</div>
+        <input id="comp-search" type="text" class="ed-comp-search" placeholder="検索...">
+        <div id="comp-list" class="ed-comp-list"></div>
+      </div>
+      <div class="ed-panel-section ed-panel-section--grow">
+        <div class="ed-panel-title">レイヤー <span id="layer-count" class="ed-badge">0</span></div>
+        <div id="layer-list" class="ed-layer-list"></div>
+      </div>
+    </aside>
+
+    <!-- Center Preview -->
+    <main class="ed-center">
+      <div class="ed-preview-toolbar">
+        <button id="btn-pc" class="ed-btn ed-btn--sm ed-btn--active">PC</button>
+        <button id="btn-mobile" class="ed-btn ed-btn--sm">Mobile</button>
+        <div class="ed-preview-label">
+          <span id="error-status" class="ed-status-ok hidden">✓</span>
+        </div>
+      </div>
+      <div class="ed-preview-wrap" id="preview-wrap">
+        <iframe id="preview-frame" class="ed-preview-frame ed-preview-frame--pc" sandbox="allow-same-origin"></iframe>
+      </div>
+      <div id="render-error" class="ed-render-error hidden"></div>
+    </main>
+
+    <!-- Right Panel -->
+    <aside class="ed-right">
+      <div class="ed-props-tabs">
+        <button class="ed-props-tab ed-props-tab--active" id="tab-global">グローバル設定</button>
+        <button class="ed-props-tab" id="tab-section">セクション設定</button>
+      </div>
+
+      <div id="props-global" class="ed-props-section">
+        <div class="ed-prop-row">
+          <label class="ed-prop-label">背景色</label>
+          <input id="gs-bgColor" type="color" class="ed-prop-color">
+        </div>
+        <div class="ed-prop-row">
+          <label class="ed-prop-label">基本カラー</label>
+          <input id="gs-primaryColor" type="color" class="ed-prop-color">
+        </div>
+        <div class="ed-prop-row">
+          <label class="ed-prop-label">フォント</label>
+          <select id="gs-fontFamily" class="ed-prop-select">
+            <option value="Helvetica Neue, Arial, sans-serif">Helvetica Neue</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+          </select>
+        </div>
+        <div class="ed-prop-row">
+          <label class="ed-prop-label">最大幅 (px)</label>
+          <input id="gs-maxWidth" type="number" class="ed-prop-input" min="400" max="800" step="10">
+        </div>
+        <div class="ed-prop-row">
+          <label class="ed-prop-label">本文フォントサイズ (px)</label>
+          <input id="gs-baseFontSize" type="number" class="ed-prop-input" min="12" max="22" step="1">
+        </div>
+        <div class="ed-prop-row">
+          <label class="ed-prop-label">行間 (line-height)</label>
+          <input id="gs-lineHeight" type="number" class="ed-prop-input" min="1.2" max="2.4" step="0.1">
+        </div>
+      </div>
+
+      <div id="props-section" class="ed-props-section hidden">
+        <div class="ed-props-header">
+          <div id="props-title" class="ed-panel-title">セクション設定</div>
+          <button id="btn-props-close" class="ed-btn-icon" title="閉じる">✕</button>
+        </div>
+        <div id="props-fields" class="ed-props-fields"></div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Hidden file input for image upload -->
+  <input id="file-upload-input" type="file" accept="image/*" style="display:none">
+
+  <!-- Toast -->
+  <div id="toast" class="ed-toast hidden"></div>
+
+  <!-- Scripts (no MJML dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script src="js/icon_data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>
