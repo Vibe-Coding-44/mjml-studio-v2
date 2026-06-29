@@ -4,7 +4,9 @@
     {
       "label": "ブランドロゴ",
       "items": [
-        { "name": "CXL ロゴ（白・透過）", "path": "cxl/logo.png", "w": 632, "h": 106 }
+        { "name": "CXL ロゴ（白・透過）", "path": "cxl/logo.png", "w": 632, "h": 106 },
+        { "name": "CXL BASH 2026 KV（JPG）", "path": "cxl/bash_kv.jpg", "w": 600, "h": 424 },
+        { "name": "CXL BASH 2026 KV（PNG）", "path": "cxl/bash_kv.png", "w": 1810, "h": 1280 }
       ]
     },
     {
