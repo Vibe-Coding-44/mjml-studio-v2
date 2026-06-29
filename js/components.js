@@ -33,16 +33,15 @@ const SNS_LETTER = {
 
 // 外部 CDN URL（email クライアントで安定動作）
 const SNS_CDN = {
-  'twitter':   'https://logo.clearbit.com/x.com',
-  'x-twitter': 'https://logo.clearbit.com/x.com',
-  'instagram': 'https://logo.clearbit.com/instagram.com',
-  'facebook':  'https://logo.clearbit.com/facebook.com',
-  'youtube':   'https://logo.clearbit.com/youtube.com',
-  'line':      'https://logo.clearbit.com/line.me',
-  'tiktok':    'https://logo.clearbit.com/tiktok.com',
-  'linkedin':  'https://logo.clearbit.com/linkedin.com',
-  'github':    'https://logo.clearbit.com/github.com',
-  'pinterest': 'https://logo.clearbit.com/pinterest.com',
+  'twitter':   'https://mjml-studio-v2.vercel.app/assets/icons/sns/twitter.png',
+  'x-twitter': 'https://mjml-studio-v2.vercel.app/assets/icons/sns/x-twitter.png',
+  'instagram': 'https://mjml-studio-v2.vercel.app/assets/icons/sns/instagram.png',
+  'facebook':  'https://mjml-studio-v2.vercel.app/assets/icons/sns/facebook.png',
+  'youtube':   'https://mjml-studio-v2.vercel.app/assets/icons/sns/youtube.png',
+  'line':      'https://mjml-studio-v2.vercel.app/assets/icons/sns/line.png',
+  'tiktok':    'https://mjml-studio-v2.vercel.app/assets/icons/sns/tiktok.png',
+  'linkedin':  'https://mjml-studio-v2.vercel.app/assets/icons/sns/linkedin.png',
+  'github':    'https://mjml-studio-v2.vercel.app/assets/icons/sns/github.png',
 };
 
 const SNS_BGCOLOR = {
