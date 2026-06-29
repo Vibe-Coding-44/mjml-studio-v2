@@ -368,13 +368,17 @@ function buildSocialListEditor(secId, items) {
   list.className = 'ed-social-list';
 
   const SNS_OPTIONS = [
-    { value: 'twitter',    label: 'X (Twitter)' },
+    { value: 'x-twitter',  label: 'X (Twitter)' },
+    { value: 'twitter',    label: 'Twitter (旧)' },
     { value: 'instagram',  label: 'Instagram' },
     { value: 'facebook',   label: 'Facebook' },
     { value: 'youtube',    label: 'YouTube' },
+    { value: 'line',       label: 'LINE' },
+    { value: 'tiktok',     label: 'TikTok' },
     { value: 'linkedin',   label: 'LinkedIn' },
-    { value: 'pinterest',  label: 'Pinterest' },
     { value: 'github',     label: 'GitHub' },
+    { value: 'website',    label: 'Webサイト' },
+    { value: 'pinterest',  label: 'Pinterest' },
     { value: 'snapchat',   label: 'Snapchat' },
     { value: 'vimeo',      label: 'Vimeo' },
     { value: 'medium',     label: 'Medium' },
@@ -382,10 +386,11 @@ function buildSocialListEditor(secId, items) {
     { value: 'dribbble',   label: 'Dribbble' },
   ];
   const DEFAULT_BG = {
-    twitter: '#000000', instagram: '#E1306C', facebook: '#1877F2',
-    youtube: '#FF0000', linkedin: '#0A66C2', pinterest: '#E60023',
-    github: '#24292E', snapchat: '#FFFC00', vimeo: '#1AB7EA',
-    medium: '#000000', soundcloud: '#FF5500', dribbble: '#EA4C89',
+    'x-twitter': '#000000', twitter: '#000000', instagram: '#E1306C', facebook: '#1877F2',
+    youtube: '#FF0000', line: '#06C755', tiktok: '#010101', linkedin: '#0A66C2',
+    github: '#24292E', website: '#4A5568', pinterest: '#E60023',
+    snapchat: '#FFFC00', vimeo: '#1AB7EA', medium: '#000000',
+    soundcloud: '#FF5500', dribbble: '#EA4C89',
   };
 
   function renderItems() {

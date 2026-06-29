@@ -32,28 +32,52 @@ const SNS_LETTER = {
 };
 
 // 外部 CDN URL（email クライアントで安定動作）
+const _SNS_BASE = 'https://mjml-studio-v2.vercel.app/assets/icons/sns/';
 const SNS_CDN = {
-  'twitter':   'https://mjml-studio-v2.vercel.app/assets/icons/sns/twitter.png',
-  'x-twitter': 'https://mjml-studio-v2.vercel.app/assets/icons/sns/x-twitter.png',
-  'instagram': 'https://mjml-studio-v2.vercel.app/assets/icons/sns/instagram.png',
-  'facebook':  'https://mjml-studio-v2.vercel.app/assets/icons/sns/facebook.png',
-  'youtube':   'https://mjml-studio-v2.vercel.app/assets/icons/sns/youtube.png',
-  'line':      'https://mjml-studio-v2.vercel.app/assets/icons/sns/line.png',
-  'tiktok':    'https://mjml-studio-v2.vercel.app/assets/icons/sns/tiktok.png',
-  'linkedin':  'https://mjml-studio-v2.vercel.app/assets/icons/sns/linkedin.png',
-  'github':    'https://mjml-studio-v2.vercel.app/assets/icons/sns/github.png',
+  'twitter':         _SNS_BASE + 'twitter.png',
+  'twitter_white':   _SNS_BASE + 'twitter_white.png',
+  'twitter_black':   _SNS_BASE + 'twitter_black.png',
+  'x-twitter':       _SNS_BASE + 'x-twitter.png',
+  'x-twitter_white': _SNS_BASE + 'x-twitter_white.png',
+  'x-twitter_black': _SNS_BASE + 'x-twitter_black.png',
+  'instagram':       _SNS_BASE + 'instagram.png',
+  'instagram_white': _SNS_BASE + 'instagram_white.png',
+  'instagram_black': _SNS_BASE + 'instagram_black.png',
+  'facebook':        _SNS_BASE + 'facebook.png',
+  'facebook_white':  _SNS_BASE + 'facebook_white.png',
+  'facebook_black':  _SNS_BASE + 'facebook_black.png',
+  'youtube':         _SNS_BASE + 'youtube.png',
+  'youtube_white':   _SNS_BASE + 'youtube_white.png',
+  'youtube_black':   _SNS_BASE + 'youtube_black.png',
+  'line':            _SNS_BASE + 'line.png',
+  'line_white':      _SNS_BASE + 'line_white.png',
+  'line_black':      _SNS_BASE + 'line_black.png',
+  'tiktok':          _SNS_BASE + 'tiktok.png',
+  'tiktok_white':    _SNS_BASE + 'tiktok_white.png',
+  'tiktok_black':    _SNS_BASE + 'tiktok_black.png',
+  'linkedin':        _SNS_BASE + 'linkedin.png',
+  'linkedin_white':  _SNS_BASE + 'linkedin_white.png',
+  'linkedin_black':  _SNS_BASE + 'linkedin_black.png',
+  'github':          _SNS_BASE + 'github.png',
+  'github_white':    _SNS_BASE + 'github_white.png',
+  'github_black':    _SNS_BASE + 'github_black.png',
+  'website':         _SNS_BASE + 'website.png',
+  'website_white':   _SNS_BASE + 'website_white.png',
+  'website_black':   _SNS_BASE + 'website_black.png',
 };
 
 const SNS_BGCOLOR = {
   'twitter': '#000', 'x-twitter': '#000', 'instagram': '#E1306C',
   'facebook': '#1877F2', 'youtube': '#FF0000', 'line': '#06C755',
   'tiktok': '#010101', 'linkedin': '#0A66C2', 'github': '#24292e',
-  'pinterest': '#E60023',
+  'pinterest': '#E60023', 'website': '#4A5568',
 };
 
 // アイコン画像ヘルパー: CDN → data URI → 文字フォールバック
-function _iconImg(name, size) {
-  const cdnUrl = SNS_CDN[name];
+// style: 'brand'(default) | 'white'(白bg) | 'black'(黒bg)
+function _iconImg(name, size, style) {
+  const suffix = style === 'white' ? '_white' : style === 'black' ? '_black' : '';
+  const cdnUrl = SNS_CDN[name + suffix] || SNS_CDN[name];
   if (cdnUrl) {
     return `<img src="${cdnUrl}" width="${size}" height="${size}" alt="${name}" style="display:block;border:0;border-radius:${Math.round(size/5)}px;">`;
   }
@@ -433,7 +457,7 @@ ${btnRow}</table>`,
   {
     id: 'social-text', name: 'SNS（アイコン＋テキスト）', icon: '🔗',
     defaultProps: {
-      bgColor: '#f8f8f8', iconSize: 22, align: 'center', padding: '20px 30px', textColor: '#4a4a4a',
+      bgColor: '#f8f8f8', iconSize: 22, iconStyle: 'brand', align: 'center', padding: '20px 30px', textColor: '#4a4a4a',
       items: [
         { name: 'twitter',   href: '#', label: 'X',        iconBg: '#000000' },
         { name: 'instagram', href: '#', label: 'Instagram', iconBg: '#E1306C' },
@@ -441,15 +465,20 @@ ${btnRow}</table>`,
       ],
     },
     propSchema: [
-      { key: 'bgColor',   type: 'color',  label: '背景色' },
-      { key: 'textColor', type: 'color',  label: 'テキスト色' },
-      { key: 'iconSize',  type: 'number', label: 'アイコンサイズ (px)', min: 16, max: 48 },
-      { key: 'items',     type: 'social-list', label: 'SNSアカウント' },
+      { key: 'bgColor',    type: 'color',  label: '背景色' },
+      { key: 'textColor',  type: 'color',  label: 'テキスト色' },
+      { key: 'iconSize',   type: 'number', label: 'アイコンサイズ (px)', min: 16, max: 48 },
+      { key: 'iconStyle',  type: 'select', label: 'アイコンスタイル', options: [
+        { value: 'brand', label: 'ブランドカラー' },
+        { value: 'white', label: '白背景' },
+        { value: 'black', label: '黒背景' },
+      ]},
+      { key: 'items',      type: 'social-list', label: 'SNSアカウント' },
     ],
     toHTML(p) {
       const half = Math.round(p.iconSize / 2);
       const cols = p.items.map(it => {
-        const imgOrLetter = _iconImg(it.name, p.iconSize);
+        const imgOrLetter = _iconImg(it.name, p.iconSize, p.iconStyle || 'brand');
         const bg = SNS_BGCOLOR[it.name] || it.iconBg || '#555';
         const isCDN = imgOrLetter.includes('clearbit.com') || imgOrLetter.includes('logo.');
         const cell = isCDN
@@ -477,7 +506,7 @@ ${cell}
   {
     id: 'social-icons', name: 'SNS（アイコンのみ）', icon: '⬡',
     defaultProps: {
-      bgColor: '#f8f8f8', iconSize: 32, align: 'center', padding: '20px 30px',
+      bgColor: '#f8f8f8', iconSize: 32, iconStyle: 'brand', align: 'center', padding: '20px 30px',
       items: [
         { name: 'twitter',   href: '#', label: '', iconBg: '#000000' },
         { name: 'instagram', href: '#', label: '', iconBg: '#E1306C' },
@@ -485,14 +514,19 @@ ${cell}
       ],
     },
     propSchema: [
-      { key: 'bgColor',  type: 'color',  label: '背景色' },
-      { key: 'iconSize', type: 'number', label: 'アイコンサイズ (px)', min: 20, max: 60 },
-      { key: 'items',    type: 'social-list', label: 'SNSアカウント（ラベル不使用）' },
+      { key: 'bgColor',   type: 'color',  label: '背景色' },
+      { key: 'iconSize',  type: 'number', label: 'アイコンサイズ (px)', min: 20, max: 60 },
+      { key: 'iconStyle', type: 'select', label: 'アイコンスタイル', options: [
+        { value: 'brand', label: 'ブランドカラー' },
+        { value: 'white', label: '白背景' },
+        { value: 'black', label: '黒背景' },
+      ]},
+      { key: 'items',     type: 'social-list', label: 'SNSアカウント（ラベル不使用）' },
     ],
     toHTML(p) {
       const half = Math.round(p.iconSize / 2);
       const cols = p.items.map(it => {
-        const imgOrLetter = _iconImg(it.name, p.iconSize);
+        const imgOrLetter = _iconImg(it.name, p.iconSize, p.iconStyle || 'brand');
         const bg = SNS_BGCOLOR[it.name] || it.iconBg || '#555';
         const isCDN = imgOrLetter.includes('clearbit.com') || imgOrLetter.includes('logo.');
         const cell = isCDN
