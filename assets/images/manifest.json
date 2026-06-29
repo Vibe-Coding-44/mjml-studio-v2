@@ -1,0 +1,44 @@
+{
+  "base": "https://cdn.jsdelivr.net/gh/Vibe-Coding-44/mjml-studio-v2@main/assets/images/",
+  "groups": [
+    {
+      "label": "ブランドロゴ",
+      "items": [
+        { "name": "CXL ロゴ（白・透過）", "path": "cxl/logo.png", "w": 632, "h": 106 }
+      ]
+    },
+    {
+      "label": "メール用（600px幅）",
+      "items": [
+        { "name": "コーヒー", "path": "email/coffee.jpg", "w": 600, "h": 400 },
+        { "name": "オフィス", "path": "email/office.jpg", "w": 600, "h": 400 },
+        { "name": "フード",   "path": "email/food.jpg",   "w": 600, "h": 400 },
+        { "name": "テクノロジー", "path": "email/technology.jpg", "w": 600, "h": 400 },
+        { "name": "自然",    "path": "email/nature.jpg",  "w": 600, "h": 400 },
+        { "name": "ファッション", "path": "email/fashion.jpg", "w": 600, "h": 400 }
+      ]
+    },
+    {
+      "label": "SNS 正方形（1080×1080）",
+      "items": [
+        { "name": "コーヒー SQ",    "path": "social/coffee_sq.jpg",     "w": 1080, "h": 1080 },
+        { "name": "オフィス SQ",    "path": "social/office_sq.jpg",     "w": 1080, "h": 1080 },
+        { "name": "フード SQ",      "path": "social/food_sq.jpg",       "w": 1080, "h": 1080 },
+        { "name": "テクノロジー SQ","path": "social/technology_sq.jpg", "w": 1080, "h": 1080 },
+        { "name": "自然 SQ",        "path": "social/nature_sq.jpg",     "w": 1080, "h": 1080 },
+        { "name": "ファッション SQ","path": "social/fashion_sq.jpg",    "w": 1080, "h": 1080 }
+      ]
+    },
+    {
+      "label": "SNS ワイド（1200×630）",
+      "items": [
+        { "name": "コーヒー Wide",    "path": "social/coffee_wide.jpg",     "w": 1200, "h": 630 },
+        { "name": "オフィス Wide",    "path": "social/office_wide.jpg",     "w": 1200, "h": 630 },
+        { "name": "フード Wide",      "path": "social/food_wide.jpg",       "w": 1200, "h": 630 },
+        { "name": "テクノロジー Wide","path": "social/technology_wide.jpg", "w": 1200, "h": 630 },
+        { "name": "自然 Wide",        "path": "social/nature_wide.jpg",     "w": 1200, "h": 630 },
+        { "name": "ファッション Wide","path": "social/fashion_wide.jpg",    "w": 1200, "h": 630 }
+      ]
+    }
+  ]
+}

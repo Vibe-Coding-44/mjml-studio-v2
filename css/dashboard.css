@@ -37,7 +37,7 @@ html, body {
 /* ── Header ── */
 .db-header {
   display: flex; align-items: center; justify-content: space-between;
-  height: 58px; padding: 0 28px;
+  height: 58px; padding: 0 28px; gap: 16px;
   background: rgba(255,255,255,0.72);
   backdrop-filter: blur(16px) saturate(1.5);
   -webkit-backdrop-filter: blur(16px) saturate(1.5);
@@ -242,3 +242,58 @@ html, body {
 .picker-item__desc { font-size: 10px; color: var(--muted); margin-top: 2px; }
 
 .hidden { display: none !important; }
+
+/* ── タブナビ ── */
+.db-tabs { display: flex; gap: 4px; flex: 1; }
+.db-tab {
+  background: none; border: none; cursor: pointer;
+  padding: 6px 14px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  transition: all .15s;
+}
+.db-tab:hover { background: var(--accent-soft); color: var(--accent); }
+.db-tab--active { background: var(--accent-soft); color: var(--accent); }
+
+/* ── アセットライブラリ ── */
+.db-assets-note { font-size: 12px; color: var(--muted); flex: 1; }
+.db-assets-container { padding: 0 0 40px; }
+.db-asset-group { margin-bottom: 36px; }
+.db-asset-group__title {
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .06em;
+  margin-bottom: 12px;
+}
+.db-asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.db-asset-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: box-shadow .15s;
+}
+.db-asset-card:hover { box-shadow: var(--shadow-hov); }
+.db-asset-thumb {
+  height: 110px; background: #e8e4f8;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.db-asset-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.db-asset-thumb--logo { background: #1a1033; padding: 16px; }
+.db-asset-thumb--logo img { object-fit: contain; width: 100%; height: 100%; }
+.db-asset-info { padding: 8px 10px 10px; }
+.db-asset-name { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.db-asset-url {
+  font-size: 10px; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 8px; font-family: monospace;
+}
+.db-asset-copy {
+  width: 100%; padding: 5px 0; border-radius: 6px; border: 1px solid var(--border);
+  background: none; cursor: pointer; font-size: 11px; font-weight: 600;
+  color: var(--accent); transition: all .12s;
+}
+.db-asset-copy:hover { background: var(--accent-soft); border-color: var(--accent); }
+.db-asset-copy.copied { background: var(--accent); color: #fff; border-color: var(--accent); }

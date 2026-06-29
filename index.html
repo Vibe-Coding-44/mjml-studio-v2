@@ -10,10 +10,15 @@
 
   <header class="db-header">
     <div class="db-header__brand">📧 Email Studio V2</div>
+    <nav class="db-tabs">
+      <button class="db-tab db-tab--active" data-tab="templates">テンプレート</button>
+      <button class="db-tab" data-tab="assets">アセットライブラリ</button>
+    </nav>
     <button id="btn-new" class="db-btn db-btn--primary">+ 新規作成</button>
   </header>
 
-  <div class="db-main">
+  <!-- テンプレート一覧 -->
+  <div id="tab-templates" class="db-main">
     <div class="db-toolbar">
       <input id="search-input" type="text" class="db-search" placeholder="テンプレートを検索...">
       <select id="status-filter" class="db-select">
@@ -29,6 +34,15 @@
       <p class="db-empty__text">テンプレートがありません</p>
       <button class="db-btn db-btn--primary" id="btn-new2">+ 最初のテンプレートを作成</button>
     </div>
+  </div>
+
+  <!-- アセットライブラリ -->
+  <div id="tab-assets" class="db-main hidden">
+    <div class="db-toolbar">
+      <span class="db-assets-note">CDN URL をコピーして、エディタの画像URL欄に貼り付けてください。</span>
+      <a class="db-btn db-btn--ghost" href="https://github.com/Vibe-Coding-44/mjml-studio-v2/upload/main/assets/images" target="_blank">↑ 画像をアップロード</a>
+    </div>
+    <div id="assets-container" class="db-assets-container">読み込み中…</div>
   </div>
 
   <!-- Template Picker Modal -->
@@ -58,5 +72,6 @@
   <script src="js/renderer.js"></script>
   <script src="js/templates.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/assets.js"></script>
 </body>
 </html>
